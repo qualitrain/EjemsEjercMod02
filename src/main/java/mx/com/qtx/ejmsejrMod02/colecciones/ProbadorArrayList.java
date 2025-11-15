@@ -3,12 +3,13 @@ package mx.com.qtx.ejmsejrMod02.colecciones;
 import javax.lang.model.SourceVersion;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ProbadorArrayList {
     public static void main(String[] args) {
      //   probarMetodosBasicosArrayList();
-     //   probarUtilCalendario();
-        probarChequeoDeTipo();
+        probarUtilCalendario();
+     //   probarChequeoDeTipo();
     }
 
     private static void probarChequeoDeTipo() {
@@ -29,8 +30,8 @@ public class ProbadorArrayList {
     }
 
     private static void probarUtilCalendario() {
-//        UtilCalendario utilCalendario = new UtilCalendario(2025);
-        UtilCalendario utilCalendario = new UtilCalendario(2025,"LinkedList");
+        UtilCalendario utilCalendario = new UtilCalendario(2025);
+ //       UtilCalendario utilCalendario = new UtilCalendario(2025,"LinkedList");
 
         int nDias = 28;
         ArrayList<String> lstMeses = utilCalendario.getMesesConNDias(nDias);
@@ -41,6 +42,9 @@ public class ProbadorArrayList {
         int nDiasMes = utilCalendario.getDiasMes(mes);
         System.out.println("n Dias " +
                 mes + " = " + nDiasMes);
+
+        String[] arrMesesNdias = utilCalendario.getMesesConNDiasString(30);
+        System.out.println("Arrays.toString(arrMesesNdias) = " + Arrays.toString(arrMesesNdias));
     }
 
     private static boolean esString(Object objX){

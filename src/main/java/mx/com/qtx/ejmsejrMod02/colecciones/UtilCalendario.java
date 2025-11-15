@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UtilCalendario {
-    private final static int[] DIAS_X_MES = {
+    private final static Integer[] DIAS_X_MES = {
             31, 28, 31, 30,
             31, 30, 31, 31,
             30, 31, 30 ,31
@@ -18,13 +18,8 @@ public class UtilCalendario {
     private List<String> meses;
 
     public UtilCalendario(int anio) {
-        this.diasXmes = new ArrayList<>();
-        for(Integer nDiasMesI:DIAS_X_MES)
-            this.diasXmes.add(nDiasMesI);
-
-        this.meses = new ArrayList<>();
-        for(String mesI: MESES)
-            this.meses.add(mesI);
+        this.diasXmes = List.of(DIAS_X_MES);
+        this.meses = List.of(MESES);
 
         if(esBisiesto(anio)){
             this.diasXmes.set(1,29);
@@ -68,6 +63,10 @@ public class UtilCalendario {
         }
 
         return mesesDeNdias;
+    }
+
+    public String[] getMesesConNDiasString(int nDias){
+        return this.getMesesConNDias(nDias).toArray(new String[0]);
     }
 
     public int getDiasMes(String nombreMes) {
