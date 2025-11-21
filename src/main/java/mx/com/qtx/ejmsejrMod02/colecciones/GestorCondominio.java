@@ -6,8 +6,8 @@ package mx.com.qtx.ejmsejrMod02.colecciones;
 public class GestorCondominio {
 
     public static void main(String[] args) {
-        // testFuncionesBasicas();
-        // testRentarDepartamento();
+        testFuncionesBasicas();
+        testRentarDepartamento();
         testAsignarAdminitradorAcondominio();
     }
 
