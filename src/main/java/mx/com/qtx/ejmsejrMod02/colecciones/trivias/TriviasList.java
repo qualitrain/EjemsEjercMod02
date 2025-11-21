@@ -11,10 +11,10 @@ public class TriviasList {
     public static void main(String[] args) {
 //        trivia_listObjects();
 //        trivia_listOf();
-//        trivia_inmutablesForEach();
-//        trivia_opersList();
-//        trivia_agregarElemsAlista();
-//        trivia_set();
+  //        trivia_inmutablesForEach();
+   //     trivia_opersList();
+    //      trivia_agregarElemsAlista();
+        trivia_set();
     }
 
     private static void trivia_set() {
@@ -27,9 +27,9 @@ public class TriviasList {
 
     private static void trivia_agregarElemsAlista() {
         ArrayList<String> meses = new ArrayList<>();
-        meses.add(1,"enero");
-        meses.add(2,"febrero");
-        meses.add(3,"marzo");
+        meses.add(0,"enero");
+        meses.add(1,"febrero");
+        meses.add(2,"marzo");
         System.out.println("meses = " + meses);
     }
 
@@ -42,8 +42,8 @@ public class TriviasList {
 
         List<String> lstOtrosDias = lstDias01;
 
-        lstDias01.reversed();
-        lstDias01.forEach(diaI-> System.out.println("diaI = " + diaI)); // que despliega ?
+        List<String> lstDisAlReves = lstDias01.reversed();
+        lstDisAlReves.forEach(diaI-> System.out.println("diaI = " + diaI)); // que despliega ?
 
         System.out.println("----------------------------");
         lstDias01.remove("Lunes");
@@ -78,8 +78,9 @@ public class TriviasList {
 
         lstObjetos.forEach(elemI-> System.out.print(elemI + ", "));
 
-        BigDecimal precio = (BigDecimal) lstObjetos.get(0);
-        BigDecimal cant = (BigDecimal) lstObjetos.get(3);
+        BigDecimal precio = (BigDecimal) lstObjetos.get(1);
+        int cantidad = (Integer)lstObjetos.get(3);
+        BigDecimal cant = BigDecimal.valueOf(cantidad);
         BigDecimal total = precio.multiply(cant);
         lstObjetos.add(total);
 
@@ -90,8 +91,10 @@ public class TriviasList {
     }
 
     private static void trivia_listOf() {
-        List<Departamento> lstDeptos = List.of(new Departamento(400,false,"Disponible",15000));
-        lstDeptos.add(new Departamento(501,true,"Fito Paez",12000));
+        List<Departamento> lstDeptos = List.of(new Departamento(400,false,"Disponible",15000),
+                                               new Departamento(501,true,"Fito Paez",12000));
+
         System.out.println("lstDeptos = " + lstDeptos);
     }
 }
+//
