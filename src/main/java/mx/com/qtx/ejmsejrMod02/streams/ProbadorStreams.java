@@ -14,7 +14,21 @@ public class ProbadorStreams {
             new Gato(200,"Micifuz","Persa",8.1)
     );
     public static void main(String[] args) {
-        test_BasicosDeStream();
+    //    test_BasicosDeStream();
+        record GatoFlaco(String nombre,Double peso){};
+        List<Gato> lstGatos1 = new ArrayList<>(lstMininos);
+
+        List<GatoFlaco> lstGatosFlacos = lstGatos1.stream()
+                    .filter(gatoI -> gatoI.getPesoEnKg() < 7)
+                    .map(gatoI -> new GatoFlaco(gatoI.getNombre(), gatoI.getPesoEnKg()))
+                    .toList();
+        System.out.println("lstGatosFlacos = " + lstGatosFlacos);
+
+        Stream<GatoFlaco> streamGatosFlacos = lstGatos1.stream()
+                .filter(gatoI -> gatoI.getPesoEnKg() < 7)
+                .map(gatoI -> new GatoFlaco(gatoI.getNombre(), gatoI.getPesoEnKg()));
+        int nGatosFlacos = (int) streamGatosFlacos.count();
+        System.out.println("\nnGatosFlacos = " + nGatosFlacos);
 
     }
 
