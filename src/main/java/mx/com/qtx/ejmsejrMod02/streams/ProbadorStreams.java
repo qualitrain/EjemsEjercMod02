@@ -2,6 +2,7 @@ package mx.com.qtx.ejmsejrMod02.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ProbadorStreams {
@@ -18,8 +19,44 @@ public class ProbadorStreams {
     public static void main(String[] args) {
     //    test_BasicosDeStream();
      //   testStreamConMapRecord();
-          testSorted();
+     //     testSorted();
+     //     testDistinct();
+     //    test_collectors_join();
+        test_methodReference();
+    }
 
+    private static void test_methodReference() {
+        List<Gato> lstGatos1 = new ArrayList<>(lstMininos);
+        String longsRazasDistintasYordenadas = lstGatos1.stream()
+                .map(gatoI->gatoI.getRaza()) // Recibe un Gato y devuelve un String
+                .distinct() // Recibe String devuelve String
+                .sorted() // Recibe String, devuelve String
+                .map(String::length) // recibe String, devuelve un Integer
+                .map(len-> "" + len) // recibe Integer y devuelve un String
+                .collect(Collectors.joining(",")); //Recibe un String, recolecta en un solo String
+
+        System.out.println("longsRazasDistintasYordenadas = " + longsRazasDistintasYordenadas);
+    }
+
+    private static void test_collectors_join() {
+        List<Gato> lstGatos1 = new ArrayList<>(lstMininos);
+        String razasDistintasYordenadas = lstGatos1.stream()
+                .map(gatoI->gatoI.getRaza())
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining("-"));
+        System.out.println("Cadena razasDistintasYordenadas = " + razasDistintasYordenadas);
+    }
+
+    private static void testDistinct() {
+        List<Gato> lstGatos1 = new ArrayList<>(lstMininos);
+        List<String> razasDistintasYordenadas = lstGatos1.stream()
+                                                         .map(gatoI->gatoI.getRaza())
+                                                         .distinct()
+                                                         .sorted()
+                                                         .collect(Collectors.toList()) // Método tradicional
+                                                         .reversed();
+        System.out.println("razasDistintasYordenadas = " + razasDistintasYordenadas);
     }
 
     private static void testSorted() {
