@@ -22,7 +22,27 @@ public class ProbadorStreams {
      //     testSorted();
      //     testDistinct();
      //    test_collectors_join();
-        test_methodReference();
+     //   test_methodReference();
+
+        test_generate_streamInfinito();
+    }
+
+    private static void test_generate_streamInfinito() {
+        List<Gato> lstGatos1 = new ArrayList<>(lstMininos);
+
+        Stream<Integer> aleatorios = Stream.generate(Math::random)
+                                           .map(numAleatI->(int)(numAleatI*1000))
+                                           .map(numInt->numInt % lstGatos1.size());
+
+        List<Gato> gatosRandom = aleatorios.map(i -> lstGatos1.get(i))
+                                           .distinct()
+                                           .limit(5)
+                                           .toList();
+
+        String nombresGatosRandom = gatosRandom.stream()
+                                                 .map(g->g.getNombre())
+                                                 .collect(Collectors.joining(", "));
+        System.out.println("Los gatos elegidos (al azar) son: " + nombresGatosRandom);
     }
 
     private static void test_methodReference() {
