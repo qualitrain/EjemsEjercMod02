@@ -40,6 +40,31 @@ public class EjercicioSets {
         mostrarPerros(setPerros2);
         mostrarPerros(setPerros3);
         mostrarPerros(setPerros4);
+
+        Comparator<Perro> comparadorXraza = (Perro p1, Perro p2)->{
+            if(p1.raza().equalsIgnoreCase(p2.raza()))
+                return 1;
+            return p1.raza().compareToIgnoreCase(p2.raza());
+        };
+        Set<Perro> setPerros5 = new TreeSet<>(comparadorXraza);
+        setPerros5.addAll(lstPerros);
+        mostrarPerros(setPerros5);
+
+        Comparator<Perro> comparadorXrazaYid = (Perro p1, Perro p2)->{
+            if(p1.raza().equalsIgnoreCase(p2.raza())) {
+                if (p1.id() < p2.id()){
+                    return -1;
+                }
+                else{
+                    return 1;
+                }
+            }
+            return p1.raza().compareToIgnoreCase(p2.raza());
+        };
+        Set<Perro> setPerros6 = new TreeSet<>(comparadorXrazaYid);
+        setPerros6.addAll(lstPerros);
+        mostrarPerros(setPerros6);
+
     }
 
     private static void mostrarPerros(Set<Perro> setPerros) {
