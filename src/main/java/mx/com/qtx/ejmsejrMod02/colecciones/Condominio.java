@@ -125,7 +125,8 @@ public class Condominio {
         if(this.administrador != null)
             administrador.copiarDesde(this.administrador);
         for(int i=0;i<this.deptos.size();i++){
-            cndDestino.deptos.get(i).copiarDesde(this.deptos.get(i));
+            Departamento deptoDestino = cndDestino.deptos.get(i);
+            deptoDestino.copiarDesde(this.deptos.get(i));
         }
     }
 
