@@ -29,10 +29,10 @@ public class ProbadorMaps {
     public static void main(String[] args) {
     //    testMapaBasico();
     //    testMapObjVsObj();
-        testMetodosCReacionMapas();
+        testMetodosCreacionMapas();
     }
 
-    private static void testMetodosCReacionMapas() {
+    private static void testMetodosCreacionMapas() {
         Map<String,Persona> mapPersonas = getMapPersonas();
         System.out.println("Personas:");
         mapPersonas.forEach((k,v)-> System.out.println(String.format("%5s",k) + ": " + v));
