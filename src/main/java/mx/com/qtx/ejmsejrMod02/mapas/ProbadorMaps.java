@@ -29,7 +29,40 @@ public class ProbadorMaps {
     public static void main(String[] args) {
     //    testMapaBasico();
     //    testMapObjVsObj();
-        testMetodosCreacionMapas();
+    //    testMetodosCreacionMapas();
+    //    testIteracionesDeMapas_forEachSobreLlaves();
+    //    testIteracionesDeMapas_forEachSobreValores();
+        testIteracionesDeMapas_forEachSobreEntry();
+    }
+
+    private static void testIteracionesDeMapas_forEachSobreEntry() {
+        Map<Integer, Gato> mapGatos = getMapGatos();
+        for(var parOrdenadoI:mapGatos.entrySet()){
+            System.out.println("llave:" + parOrdenadoI.getKey());
+            System.out.println("valor:" + parOrdenadoI.getValue());
+        }
+    }
+
+    private static void testIteracionesDeMapas_forEachSobreValores() {
+        Map<Integer, Gato> mapGatos = getMapGatos();
+        for(Gato gatoI :mapGatos.values()){
+            System.out.println("gatoI  = " + gatoI.getNombre() );
+        }
+    }
+
+    private static void testIteracionesDeMapas_forEachSobreLlaves() {
+        Map<String,Persona> mapPersonas = getMapPersonas();
+        System.out.println("Las llaves del mapa de personas son:");
+        for(String llavePersonaI : mapPersonas.keySet()){
+            System.out.println("llavePersonaI = " + llavePersonaI);
+            Persona personaI = mapPersonas.get(llavePersonaI);
+            System.out.println("personaI = " + personaI);
+        }
+        System.out.println();
+        String cadLlaves = mapPersonas.keySet().stream()
+                                               .sorted()
+                                               .collect(Collectors.joining(", "));
+        System.out.println("cadLlaves = " + cadLlaves);
     }
 
     private static void testMetodosCreacionMapas() {

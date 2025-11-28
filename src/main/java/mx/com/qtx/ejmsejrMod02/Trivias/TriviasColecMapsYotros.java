@@ -27,15 +27,17 @@ public class TriviasColecMapsYotros {
     );
 
     public static void main(String[] args) {
-        triviaSetsVsLists01();
+    //    triviaSetsVsLists01();
     //    triviaSetsConLambdas();
-    //    triviaSetsDistintosTipos();
+        triviaSetsDistintosTipos();
     }
 
     private static void triviaSetsDistintosTipos() {
         Set<Gato> setGatos1 = new LinkedHashSet<>(lstMininos);
         setGatos1.addAll(lstMininos);
-        var cadGats1 = setGatos1.stream().map(g->g.getNombre()).collect(Collectors.joining(","));
+        String cadGats1 = setGatos1.stream()
+                .map(g -> g.getNombre())
+                .collect(Collectors.joining(","));
         System.out.println("cadGats1 = " + cadGats1);
 
         Set<Gato> setGatos2 = new TreeSet<>( (g1,g2)->( g1.getNombre() ).compareTo( g2.getNombre() ) < 0 ? -1 : 1);
@@ -44,8 +46,12 @@ public class TriviasColecMapsYotros {
         Set<Gato> setGatos3 = new LinkedHashSet<>();
         setGatos3.addAll(setGatos2);
 
-        var cadGats2 = setGatos2.stream().map(g->g.getNombre()).collect(Collectors.joining(","));
-        var cadGats3 = setGatos3.stream().map(g->g.getNombre()).collect(Collectors.joining(","));
+        var cadGats2 = setGatos2.stream()
+                                .map(g->g.getNombre())
+                                .collect(Collectors.joining(","));
+        var cadGats3 = setGatos3.stream()
+                                .map(g->g.getNombre())
+                                .collect(Collectors.joining(","));
         if(cadGats2.compareTo(cadGats3) == 0){
             System.out.println("Las cadenas cadGtas2 y cadGats3 son iguales");
         }
@@ -55,6 +61,7 @@ public class TriviasColecMapsYotros {
 
         System.out.println("cadGats2 = " + cadGats2);
         System.out.println("cadGats3 = " + cadGats3);
+
     }
 
     private static void triviaSetsConLambdas() {
@@ -83,11 +90,11 @@ public class TriviasColecMapsYotros {
     private static void desplegarGatos(Set<Gato> setGatitos) {
         int nGatos = setGatitos.size();
         System.out.println("\nhay " + nGatos + " gatos"); // ¿Cuantos gatos hay?
-        
-        var cad = setGatitos.stream()
-                            .map(gatI -> gatI.getNombre())
-                            .sorted()
-                            .collect(Collectors.joining(", "));
+
+        String cad = setGatitos.stream()
+                .map(gatI -> gatI.getNombre())
+                .sorted()
+                .collect(Collectors.joining(", "));
         System.out.println("cad = " + cad); // ¿Qué muestra exactamente?
 
 
