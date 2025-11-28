@@ -6,6 +6,7 @@ import mx.com.qtx.ejmsejrMod02.streams.Gato;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ProbadorMaps {
     private static List<Gato> lstMininos = List.of(
@@ -27,6 +28,34 @@ public class ProbadorMaps {
 
     public static void main(String[] args) {
     //    testMapaBasico();
+    //    testMapObjVsObj();
+        testMetodosCReacionMapas();
+    }
+
+    private static void testMetodosCReacionMapas() {
+        Map<String,Persona> mapPersonas = getMapPersonas();
+        System.out.println("Personas:");
+        mapPersonas.forEach((k,v)-> System.out.println(String.format("%5s",k) + ": " + v));
+
+        System.out.println("\nGatos:");
+        Map<Integer,Gato> mapGatos = getMapGatos();
+        mapGatos.forEach((k,v)->System.out.println(String.format("%5d",k) + ": " + v));
+    }
+
+    private static Map<String, Persona> getMapPersonas() {
+        Map<String,Persona> mapPersonas = new HashMap<>();
+        for(Persona personaI:lstPersonas){
+            mapPersonas.put(personaI.getId(),personaI);
+        }
+        return mapPersonas;
+    }
+
+    private static Map<Integer,Gato> getMapGatos(){
+        return lstMininos.stream()
+                         .collect(Collectors.toMap(gatoI->gatoI.getNumero(),gatoI->gatoI));
+    }
+
+    private static void testMapObjVsObj() {
         Map<Persona, Gato> mapMascotas = new HashMap<>();
         mapMascotas.put(lstPersonas.get(1),lstMininos.get(3));
         mapMascotas.put(lstPersonas.get(2),lstMininos.get(4));
