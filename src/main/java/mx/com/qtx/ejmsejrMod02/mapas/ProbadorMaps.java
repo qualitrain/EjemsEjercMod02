@@ -3,9 +3,7 @@ package mx.com.qtx.ejmsejrMod02.mapas;
 import mx.com.qtx.ejmsejrMod02.colecciones.Persona;
 import mx.com.qtx.ejmsejrMod02.streams.Gato;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProbadorMaps {
@@ -14,8 +12,8 @@ public class ProbadorMaps {
             new Gato(3,"Demóstenes","Angora",7.7),
             new Gato(7,"Panza","Siamés",6.5),
             new Gato(17,"Danilo","Criollo",6.2),
-            new Gato(70,"Hermilo","Birmano",6.4),
-            new Gato(34,"Cucho","Burmés",9.2),
+            new Gato(70,"Hermilo","Criollo",6.4),
+            new Gato(34,"Cucho","Abisinio",9.2),
             new Gato(65,"Benito","Abisinio",10.3),
             new Gato(200,"Micifuz","Persa",8.1)
     );
@@ -32,7 +30,40 @@ public class ProbadorMaps {
     //    testMetodosCreacionMapas();
     //    testIteracionesDeMapas_forEachSobreLlaves();
     //    testIteracionesDeMapas_forEachSobreValores();
-        testIteracionesDeMapas_forEachSobreEntry();
+    //    testIteracionesDeMapas_forEachSobreEntry();
+
+        ejercicioMapaGatosXraza();
+    }
+
+    private static void ejercicioMapaGatosXraza() {
+        Map<Integer, Gato> mapGatos = getMapGatos();
+
+        Map<String, Set<Gato>> mapGatosXRaza = getMapGatosXraza(mapGatos);
+        for(String razaI:mapGatosXRaza.keySet()){
+            Set<Gato> bolsaDeGatos = mapGatosXRaza.get(razaI);
+            String nomGatos = bolsaDeGatos.stream()
+                                          .map(gatoI->gatoI.getNombre())
+                                          .collect(Collectors.joining(", "));
+            System.out.println("Los gatos de raza " + razaI + " son:" + nomGatos);
+        }
+        /* Otra opcion: Me "caso" con List
+        Map<String, List<Gato>> mapGatosXRaza = getMapGatosXraza(mapGatos);
+         */
+
+        /* Otar opción: No me "caso" ni con List ni con Set
+        Map<String, Collection<Gato>> = getMapGatosXraza(mapGatos);
+         */
+    }
+
+    private static Map<String, Set<Gato>> getMapGatosXraza(Map<Integer, Gato> mapGatos) {
+        Map<String, Set<Gato>> mapGatosXraza = new HashMap<>();
+        for(Gato gatoI: mapGatos.values()){
+            String raza = gatoI.getRaza();
+            Set<Gato> gatosDeRaza = mapGatosXraza.getOrDefault(raza, new HashSet<>());
+            gatosDeRaza.add(gatoI);
+            mapGatosXraza.put(raza,gatosDeRaza);
+        }
+        return mapGatosXraza;
     }
 
     private static void testIteracionesDeMapas_forEachSobreEntry() {
