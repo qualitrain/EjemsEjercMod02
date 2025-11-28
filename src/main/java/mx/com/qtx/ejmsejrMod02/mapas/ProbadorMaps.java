@@ -53,6 +53,13 @@ public class ProbadorMaps {
         /* Otar opción: No me "caso" ni con List ni con Set
         Map<String, Collection<Gato>> = getMapGatosXraza(mapGatos);
          */
+
+        mapGatosXRaza.forEach((k,v)-> {
+            System.out.print("raza = " + k );
+            System.out.println(", gatos =  " + v.stream()
+                                                .map(gatI->gatI.getNombre())
+                                                .collect(Collectors.joining(", ")));
+        });
     }
 
     private static Map<String, Set<Gato>> getMapGatosXraza(Map<Integer, Gato> mapGatos) {
